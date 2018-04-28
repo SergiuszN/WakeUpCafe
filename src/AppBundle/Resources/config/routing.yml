@@ -1,3 +1,19 @@
 app_homepage:
     path:     /
     defaults: { _controller: AppBundle:App:index }
+
+app_reservation:
+    path:     /reservation
+    defaults: { _controller: AppBundle:App:reservation }
+
+app_blog_list:
+    path:     /blog/{page}
+    defaults: { _controller: AppBundle:App:blogList, page: 1 }
+    requirements:
+        page: \d+
+
+app_blog_post:
+    path:     /blog/post/{id}
+    defaults: { _controller: AppBundle:App:blogPost }
+    requirements:
+        id: \d+
