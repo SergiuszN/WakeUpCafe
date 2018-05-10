@@ -5,5 +5,31 @@
 
     <div class="container">
         <h1>Index page!</h1>
+        <h2>Nasza lokalizacja:</h2>
+        <div id="map" style="width: 640px; height: 330px; display: block; background: #fff; padding: 15px; box-shadow: 0 0 20px #999; border-radius: 2px;"></div>
     </div>
+
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ4J489wut-A7g21Bvq6oMHPfQ8PfADEQ"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.js"></script>
+
+    <script>
+        var map = new GMaps({
+            div: '#map',
+            lat: 53.4470875,
+            lng: 14.4919988,
+            zoom: 17
+        });
+
+        map.addMarker({
+            lat: 53.4471072,
+            lng: 14.4924907,
+            title: 'Our Location'
+        });
+    </script>
+
 {% endblock %}
