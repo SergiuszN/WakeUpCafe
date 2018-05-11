@@ -1,0 +1,19 @@
+{% extends '@App/admin/layout.html.twig' %}
+
+{% block title %}Blog Edit | WakeUpCafe{% endblock %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('add_admin_homepage') }}">Dashboard</a></li>
+        <li><a href="{{ path('add_admin_blog_list') }}">Blog List</a></li>
+        <li class="active">Edit Post</li>
+    </ol>
+
+    <div class="page-header">
+        <h1>Edit Post <small>Edit your awesome post!</small></h1>
+    </div>
+
+    {{ form(form) }}
+
+{% endblock %}
+

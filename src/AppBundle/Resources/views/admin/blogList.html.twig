@@ -1,0 +1,62 @@
+{% extends '@App/admin/layout.html.twig' %}
+
+{% block title %}Blog List | WakeUpCafe{% endblock %}
+
+{% block body %}
+    <ol class="breadcrumb">
+        <li><a href="{{ path('add_admin_homepage') }}">Dashboard</a></li>
+        <li class="active">Blog List</li>
+    </ol>
+
+    <div class="page-header">
+        <h1>Blog List <small>Here you can see list all of you posts</small></h1>
+    </div>
+
+    <div class="text-right">
+        <a class="btn btn-default" href="{{ path('add_admin_blog_add') }}"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Add New</a>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if pagination.getTotalItemCount == 0 %}
+            <tr>
+                <td colspan="6" class="text-center"><h4>There is no a posts in your database =(</h4></td>
+            </tr>
+        {% endif %}
+        {% for post in pagination %}
+            <tr>
+                <td>{{ post.id }}</td>
+                <td>{{ post.title }}</td>
+                <td>{{ post.author.username }}</td>
+                <td>
+                    <a href="{{ path('add_admin_blog_switch_state', {post: post.id}) }}" class="text-muted">
+                        {% if post.status %} <span class="fa fa-check"></span> {% else %} <span class="fa fa-times"></span> {% endif %}
+                    </a>
+                </td>
+                <td>{{ post.date | date('Y-m-d H:i:s') }}</td>
+                <td>
+                    <a href="{{ path('add_admin_blog_edit', {post: post.id}) }}" class="btn btn-xs btn-default"><span class="fa fa-pencil"></span> Edit</a>
+                    <a href="{{ path('add_admin_blog_delete', {post: post.id}) }}" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span> Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(pagination) }}
+    </div>
+{% endblock %}
+
+
+

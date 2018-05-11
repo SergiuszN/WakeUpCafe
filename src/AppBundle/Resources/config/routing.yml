@@ -17,3 +17,7 @@ app_blog_post:
     defaults: { _controller: AppBundle:App:blogPost }
     requirements:
         id: \d+
+
+app_admin:
+    prefix: /admin
+    resource: 'admin_routing.yml'

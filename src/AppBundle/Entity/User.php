@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as FosUser;
 /**
@@ -22,11 +23,18 @@ class User extends FosUser
     protected $id;
 
     /**
+     * One User has Many Posts.
+     * @ORM\OneToMany(targetEntity="Post", mappedBy="author")
+     */
+    private $posts;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         parent::__construct();
+        $this->posts = new ArrayCollection();
     }
 
     /**
@@ -37,5 +45,13 @@ class User extends FosUser
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @return Post[] | ArrayCollection
+     */
+    public function getPosts()
+    {
+        return $this->posts;
     }
 }

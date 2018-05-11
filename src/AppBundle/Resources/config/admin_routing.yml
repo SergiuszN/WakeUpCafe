@@ -1,0 +1,31 @@
+add_admin_homepage:
+    path:     /
+    defaults: { _controller: AppBundle:Admin:dashboard }
+
+add_admin_blog_list:
+    path:     /blog/list/{page}
+    defaults: { _controller: AppBundle:Admin:blogList, page: 1 }
+    requirements:
+        page: \d+
+
+add_admin_blog_add:
+    path:     /blog/add
+    defaults: { _controller: AppBundle:Admin:blogAdd }
+
+add_admin_blog_edit:
+    path:     /blog/edit/{post}
+    defaults: { _controller: AppBundle:Admin:blogEdit }
+    requirements:
+        post: \d+
+
+add_admin_blog_delete:
+    path:     /blog/delete/{post}
+    defaults: { _controller: AppBundle:Admin:blogDelete }
+    requirements:
+        post: \d+
+
+add_admin_blog_switch_state:
+    path:     /blog-switch-state/{post}
+    defaults: { _controller: AppBundle:Admin:blogSwitchStatus }
+    requirements:
+        post: \d+
