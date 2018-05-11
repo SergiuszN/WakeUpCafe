@@ -3,7 +3,9 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Reservation;
 use AppBundle\Form\PostForm;
+use AppBundle\Form\ReservationAdminForm;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -107,5 +109,58 @@ class AdminController extends Controller
         $em->remove($post);
         $em->flush();
         return $this->redirectToRoute('add_admin_blog_list');
+    }
+
+    /**
+     * @param int $page
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function reservationListAction($page)
+    {
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $this->getDoctrine()->getRepository(Reservation::class)->getAdminListQuery(),
+            $page,
+            $this->getParameter('admin_list_per_page')
+        );
+
+        // parameters to template
+        return $this->render('@App/admin/reservationList.html.twig', array('pagination' => $pagination));
+    }
+
+    public function reservationAddAction(Request $request)
+    {
+        $reservation = new Reservation();
+        $form = $this->createForm(ReservationAdminForm::class, $reservation);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            /** @var Post $reservation */
+            $reservation = $form->getData();
+            $reservation->setAuthor($this->getUser());
+
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($reservation);
+            $em->flush();
+
+            return $this->redirectToRoute('add_admin_reservation_list');
+        }
+
+        return $this->render('@App/admin/reservationAdd.html.twig', array(
+            'form' => $form->createView(),
+        ));
+    }
+
+    public function reservationEditAction(Request $request, Reservation $reservation)
+    {
+    }
+
+    public function reservationDeleteAction(Reservation $reservation)
+    {
+    }
+
+    public function reservationSwitchStatusAction(Reservation $reservation)
+    {
     }
 }

@@ -29,12 +29,19 @@ class User extends FosUser
     private $posts;
 
     /**
+     * One User has Many Reservations.
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="author")
+     */
+    private $reservations;
+
+    /**
      * User constructor.
      */
     public function __construct()
     {
         parent::__construct();
         $this->posts = new ArrayCollection();
+        $this->reservations = new ArrayCollection();
     }
 
     /**
@@ -53,5 +60,21 @@ class User extends FosUser
     public function getPosts()
     {
         return $this->posts;
+    }
+
+    /**
+     * @return Reservation[] | ArrayCollection
+     */
+    public function getReservations()
+    {
+        return $this->reservations;
+    }
+
+    /**
+     * @param Reservation[] | ArrayCollection $reservations
+     */
+    public function setReservations($reservations)
+    {
+        $this->reservations = $reservations;
     }
 }

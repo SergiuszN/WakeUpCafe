@@ -29,3 +29,31 @@ add_admin_blog_switch_state:
     defaults: { _controller: AppBundle:Admin:blogSwitchStatus }
     requirements:
         post: \d+
+
+add_admin_reservation_list:
+    path:     /reservation/list/{page}
+    defaults: { _controller: AppBundle:Admin:reservationList, page: 1 }
+    requirements:
+        page: \d+
+
+add_admin_reservation_add:
+    path:     /reservation/add
+    defaults: { _controller: AppBundle:Admin:reservationAdd }
+
+add_admin_reservation_edit:
+    path:     /reservation/edit/{reservation}
+    defaults: { _controller: AppBundle:Admin:reservationEdit }
+    requirements:
+        post: \d+
+
+add_admin_reservation_delete:
+    path:     /reservation/delete/{reservation}
+    defaults: { _controller: AppBundle:Admin:reservationDelete }
+    requirements:
+        post: \d+
+
+add_admin_reservation_switch_state:
+    path:     /reservation/switch/state/{reservation}
+    defaults: { _controller: AppBundle:Admin:reservationSwitchStatus }
+    requirements:
+        post: \d+

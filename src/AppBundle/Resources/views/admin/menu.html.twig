@@ -22,7 +22,7 @@
                     </a>
                 </li>
                 <li {% if app.request.attributes.get('_route') starts with 'add_admin_reservation' %}class="active"{% endif %}>
-                    <a href="#">
+                    <a href="{{ path('add_admin_reservation_list') }}">
                         <span class="fa fa-bookmark"></span> Reservation
                     </a>
                 </li>
