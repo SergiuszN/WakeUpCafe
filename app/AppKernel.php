@@ -39,14 +39,4 @@ class AppKernel extends Kernel
             die($e);
         }
     }
-    
-    public function getCacheDir()
-    {
-        return '/home/vagrant/symfony/'.$this->environment.'/cache';
-    }
-
-    public function getLogDir()
-    {
-        return '/home/vagrant/symfony/'.$this->environment.'/logs';
-    }
 }
