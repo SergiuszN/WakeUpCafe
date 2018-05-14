@@ -1,59 +1,81 @@
-add_admin_homepage:
+app_admin_homepage:
     path:     /
     defaults: { _controller: AppBundle:Admin:dashboard }
 
-add_admin_blog_list:
+app_admin_blog_list:
     path:     /blog/list/{page}
     defaults: { _controller: AppBundle:Admin:blogList, page: 1 }
     requirements:
         page: \d+
 
-add_admin_blog_add:
+app_admin_blog_add:
     path:     /blog/add
     defaults: { _controller: AppBundle:Admin:blogAdd }
 
-add_admin_blog_edit:
+app_admin_blog_edit:
     path:     /blog/edit/{post}
     defaults: { _controller: AppBundle:Admin:blogEdit }
     requirements:
         post: \d+
 
-add_admin_blog_delete:
+app_admin_blog_delete:
     path:     /blog/delete/{post}
     defaults: { _controller: AppBundle:Admin:blogDelete }
     requirements:
         post: \d+
 
-add_admin_blog_switch_state:
-    path:     /blog-switch-state/{post}
+app_admin_blog_switch_state:
+    path:     /blog/switch/state/{post}
     defaults: { _controller: AppBundle:Admin:blogSwitchStatus }
     requirements:
         post: \d+
 
-add_admin_reservation_list:
+app_admin_reservation_list:
     path:     /reservation/list/{page}
     defaults: { _controller: AppBundle:Admin:reservationList, page: 1 }
     requirements:
         page: \d+
 
-add_admin_reservation_add:
+app_admin_reservation_add:
     path:     /reservation/add
     defaults: { _controller: AppBundle:Admin:reservationAdd }
 
-add_admin_reservation_edit:
+app_admin_reservation_edit:
     path:     /reservation/edit/{reservation}
     defaults: { _controller: AppBundle:Admin:reservationEdit }
     requirements:
-        post: \d+
+        reservation: \d+
 
-add_admin_reservation_delete:
+app_admin_reservation_delete:
     path:     /reservation/delete/{reservation}
     defaults: { _controller: AppBundle:Admin:reservationDelete }
     requirements:
-        post: \d+
+        reservation: \d+
 
-add_admin_reservation_switch_state:
+app_admin_reservation_switch_state:
     path:     /reservation/switch/state/{reservation}
     defaults: { _controller: AppBundle:Admin:reservationSwitchStatus }
     requirements:
-        post: \d+
+        reservation: \d+
+
+app_admin_bench_list:
+    path:     /bench/list/{page}
+    defaults: { _controller: AppBundle:Admin:benchList, page: 1 }
+    requirements:
+        page: \d+
+
+app_admin_bench_add:
+    path:     /bench/add
+    defaults: { _controller: AppBundle:Admin:benchAdd }
+
+app_admin_bench_edit:
+    path:     /bench/edit/{bench}
+    defaults: { _controller: AppBundle:Admin:benchEdit }
+    requirements:
+        bench: \d+
+
+app_admin_bench_delete:
+    path:     /bench/delete/{bench}
+    defaults: { _controller: AppBundle:Admin:benchDelete }
+    requirements:
+        bench: \d+

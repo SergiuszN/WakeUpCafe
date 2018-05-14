@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Bench;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
@@ -19,7 +21,12 @@ class ReservationAdminForm extends AbstractType
             ->add('date', DateType::class, array('label' => 'Date:'))
             ->add('name', TextType::class, array('label' => 'Name:'))
             ->add('numberOfPerson', NumberType::class, array('label' => 'Number Of Person:'))
-            ->add('table', NumberType::class, array('label' => 'Table:'))
+            ->add('bench', EntityType::class, array(
+                'class' => Bench::class,
+                'choice_label' => 'name',
+                'label' => 'Table:',
+                'required' => true
+            ))
             ->add('state', CheckboxType::class, array('required' => false, 'label' => 'state'))
             ->add('save', SubmitType::class, array('label' => 'Save'))
         ;
@@ -32,6 +39,6 @@ class ReservationAdminForm extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'app_bundle_reservation';
+        return 'app_bundle_reservation_form';
     }
 }

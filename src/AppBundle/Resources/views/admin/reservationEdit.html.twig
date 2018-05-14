@@ -1,16 +1,16 @@
 {% extends '@App/admin/layout.html.twig' %}
 
-{% block title %}Reservation Add | WakeUpCafe{% endblock %}
+{% block title %}Reservation Edit | WakeUpCafe{% endblock %}
 
 {% block body %}
     <ol class="breadcrumb">
         <li><a href="{{ path('app_admin_homepage') }}">Dashboard</a></li>
         <li><a href="{{ path('app_admin_reservation_list') }}">Reservation List</a></li>
-        <li class="active">Add New Reservation</li>
+        <li class="active">Edit Reservation</li>
     </ol>
 
     <div class="page-header">
-        <h1>Add New Reservation <br class="visible-xs"><small>Create new awesome reservation!</small></h1>
+        <h1>Reservation Post <br class="visible-xs"><small>Edit your reservation!</small></h1>
     </div>
 
     {{ form(form) }}

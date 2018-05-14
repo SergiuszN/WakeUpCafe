@@ -4,7 +4,7 @@
 
 {% block body %}
     <ol class="breadcrumb">
-        <li><a href="{{ path('add_admin_homepage') }}">Dashboard</a></li>
+        <li><a href="{{ path('app_admin_homepage') }}">Dashboard</a></li>
         <li class="active">Reservation List</li>
     </ol>
 
@@ -13,7 +13,7 @@
     </div>
 
     <div class="text-right">
-        <a class="btn btn-default" href="{{ path('add_admin_reservation_add') }}"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Create New</a>
+        <a class="btn btn-default" href="{{ path('app_admin_reservation_add') }}"> <i class="fa fa-plus-circle" aria-hidden="true"></i> Create New</a>
     </div>
 
     <div class="table-responsive" style="margin-top: 15px;">
@@ -40,18 +40,18 @@
                 <tr>
                     <td>{{ reservation.id }}</td>
                     <td>{{ reservation.date | date('Y-m-d') }}</td>
-                    <td>{{ reservation.table }}</td>
+                    <td>{{ reservation.bench.name }}</td>
                     <td>{{ reservation.numberOfPerson }}</td>
                     <td>{{ reservation.name }}</td>
                     <td>{{ reservation.author.username }}</td>
                     <td>
-                        <a href="{{ path('add_admin_reservation_switch_state', {reservation: reservation.id}) }}" class="text-muted">
+                        <a href="{{ path('app_admin_reservation_switch_state', {reservation: reservation.id}) }}" class="text-muted">
                             {% if reservation.state %} <span class="fa fa-check"></span> {% else %} <span class="fa fa-times"></span> {% endif %}
                         </a>
                     </td>
                     <td>
-                        <a href="{{ path('add_admin_reservation_edit', {reservation: reservation.id}) }}" class="btn btn-xs btn-default"><span class="fa fa-pencil"></span> Edit</a>
-                        <a href="{{ path('add_admin_reservation_delete', {reservation: reservation.id}) }}" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span> Delete</a>
+                        <a href="{{ path('app_admin_reservation_edit', {reservation: reservation.id}) }}" class="btn btn-xs btn-default"><span class="fa fa-pencil"></span> Edit</a>
+                        <a href="{{ path('app_admin_reservation_delete', {reservation: reservation.id}) }}" class="btn btn-xs btn-danger"><span class="fa fa-trash"></span> Delete</a>
                     </td>
                 </tr>
             {% endfor %}

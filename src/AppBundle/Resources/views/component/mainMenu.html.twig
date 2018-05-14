@@ -17,7 +17,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 {% if app.user and app.user.hasRole('ROLE_SUPER_ADMIN') %}
-                    <li><a href="{{ path('add_admin_homepage') }}">Admin Panel</a></li>
+                    <li><a href="{{ path('app_admin_homepage') }}">Admin Panel</a></li>
                     <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
                 {% else %}
                     <li><a href="{{ path('fos_user_security_login') }}">Login</a></li>

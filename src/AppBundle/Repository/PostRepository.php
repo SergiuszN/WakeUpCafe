@@ -2,7 +2,9 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Util\TimeHelper;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query\QueryException;
 
 /**
  * PostRepository
@@ -12,11 +14,70 @@ use Doctrine\ORM\EntityRepository;
  */
 class PostRepository extends EntityRepository
 {
+    /**
+     * @return \Doctrine\ORM\Query
+     */
     public function getAdminListQuery()
     {
         return $this->createQueryBuilder('p')
             ->select('p, a')
             ->leftJoin('p.author', 'a')
+            ->addOrderBy('p.date', 'DESC')
             ->getQuery();
+    }
+
+    /**
+     * @return int
+     */
+    public function findPostedCount()
+    {
+        try {
+            return $this->createQueryBuilder('p')
+                ->select('COUNT(p)')
+                ->andWhere('p.status = :state')
+                ->setParameter('state', true)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (QueryException $e) {
+            return 0;
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function findAddedTodayCount()
+    {
+        $dates = TimeHelper::getTodayDates();
+
+        try {
+            return $this->createQueryBuilder('p')
+                ->select('COUNT(p)')
+                ->andWhere('p.date >= :startDate')
+                ->andWhere('p.date < :endDate')
+                ->setParameter('startDate', $dates->start)
+                ->setParameter('endDate', $dates->end)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (QueryException $e) {
+            return 0;
+        }
+    }
+
+    /**
+     * @return int
+     */
+    public function findAwaitingApprovalCount()
+    {
+        try {
+            return $this->createQueryBuilder('p')
+                ->select('COUNT(p)')
+                ->andWhere('p.status = :state')
+                ->setParameter('state', false)
+                ->getQuery()
+                ->getSingleScalarResult();
+        } catch (QueryException $e) {
+            return 0;
+        }
     }
 }

@@ -2,22 +2,21 @@
 
 namespace AppBundle\Form;
 
-use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class PostForm extends AbstractType
+class BenchForm extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('title', TextType::class, array('required' => true, 'label' => 'Title:'))
-            ->add('content', CKEditorType::class, array('required' => true, 'label' => 'Content:'))
-            ->add('status', CheckboxType::class, array('label' => 'Active', 'required' => false))
+            ->add('name', TextType::class, array('required' => true, 'label' => 'Name:'))
+            ->add('description', TextType::class, array('required' => false, 'label' => 'Description:'))
+            ->add('numberOfPerson', NumberType::class, array('required' => true, 'label' => 'Number Of Person:'))
             ->add('save', SubmitType::class, array('label' => 'Save'))
         ;
     }
@@ -29,6 +28,6 @@ class PostForm extends AbstractType
 
     public function getBlockPrefix()
     {
-        return 'app_bundle_post_form';
+        return 'app_bundle_bench_form';
     }
 }

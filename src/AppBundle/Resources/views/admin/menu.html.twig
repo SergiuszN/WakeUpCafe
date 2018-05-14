@@ -11,19 +11,24 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
-                <li {% if app.request.attributes.get('_route') == 'add_admin_homepage' %}class="active"{% endif %}>
-                    <a href="{{ path('add_admin_homepage') }}">
+                <li {% if app.request.attributes.get('_route') == 'app_admin_homepage' %}class="active"{% endif %}>
+                    <a href="{{ path('app_admin_homepage') }}">
                         <span class="fa fa-dashboard"></span> Dashboard
                     </a>
                 </li>
-                <li {% if app.request.attributes.get('_route') starts with 'add_admin_blog' %}class="active"{% endif %}>
-                    <a href="{{ path('add_admin_blog_list') }}">
+                <li {% if app.request.attributes.get('_route') starts with 'app_admin_blog' %}class="active"{% endif %}>
+                    <a href="{{ path('app_admin_blog_list') }}">
                         <span class="fa fa-list-alt"></span> Blog
                     </a>
                 </li>
-                <li {% if app.request.attributes.get('_route') starts with 'add_admin_reservation' %}class="active"{% endif %}>
-                    <a href="{{ path('add_admin_reservation_list') }}">
+                <li {% if app.request.attributes.get('_route') starts with 'app_admin_reservation' %}class="active"{% endif %}>
+                    <a href="{{ path('app_admin_reservation_list') }}">
                         <span class="fa fa-bookmark"></span> Reservation
+                    </a>
+                </li>
+                <li {% if app.request.attributes.get('_route') starts with 'app_admin_bench' %}class="active"{% endif %}>
+                    <a href="{{ path('app_admin_bench_list') }}">
+                        <span class="fa fa-user-circle-o"></span> Table
                     </a>
                 </li>
             </ul>

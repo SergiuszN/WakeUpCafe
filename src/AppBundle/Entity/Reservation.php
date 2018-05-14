@@ -43,11 +43,11 @@ class Reservation
     private $numberOfPerson;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="_table", type="integer")
+     * Many Reservation have One Author.
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Bench", inversedBy="reservations")
+     * @ORM\JoinColumn(name="bench", referencedColumnName="id")
      */
-    private $table;
+    private $bench;
 
     /**
      * @var bool
@@ -189,24 +189,18 @@ class Reservation
     }
 
     /**
-     * Get table
-     *
-     * @return int
+     * @return Bench
      */
-    public function getTable()
+    public function getBench()
     {
-        return $this->table;
+        return $this->bench;
     }
 
     /**
-     * Set table
-     *
-     * @param int $table
-     * @return Reservation
+     * @param Bench $bench
      */
-    public function setTable($table)
+    public function setBench($bench)
     {
-        $this->table = $table;
-        return $this;
+        $this->bench = $bench;
     }
 }

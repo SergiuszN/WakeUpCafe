@@ -18,9 +18,9 @@
                     <h3 class="panel-title">Post statistic</h3>
                 </div>
                 <div class="panel-body">
-                    <div>Posted: <span class="label label-success">10</span></div>
-                    <div>Added today: <span class="label label-info">0</span></div>
-                    <div>Awaiting approval: <span class="label label-warning">2</span></div>
+                    <div>Posted: <span class="label label-success">{{ postPosted }}</span></div>
+                    <div>Added today: <span class="label label-info">{{ postAddedToday }}</span></div>
+                    <div>Awaiting approval: <span class="label label-warning">{{ postAwaitingApproval }}</span></div>
                 </div>
             </div>
         </div>
@@ -30,9 +30,9 @@
                     <h3 class="panel-title">Reservation statistic</h3>
                 </div>
                 <div class="panel-body">
-                    <div>Today: <span class="label label-success">55/100</span></div>
-                    <div>Tomorrow: <span class="label label-info">14/100</span></div>
-                    <div>Last week: <span class="label label-warning">200</span></div>
+                    <div>Today: <span class="label label-success">{{ reservationToday }} / {{ benchCount }}</span></div>
+                    <div>Tomorrow: <span class="label label-info">{{ reservationTomorrow }} / {{ benchCount }}</span></div>
+                    <div>Last week: <span class="label label-warning">{{ reservationWeek }}</span></div>
                 </div>
             </div>
         </div>
