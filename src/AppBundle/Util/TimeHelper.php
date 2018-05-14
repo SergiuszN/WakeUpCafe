@@ -4,6 +4,23 @@ namespace AppBundle\Util;
 
 class TimeHelper {
 
+    public static function getOneDayShift(\DateTime $start)
+    {
+        $start->setTime(0,0,0);
+        $end = clone $start;
+
+        try {
+            $end->add(new \DateInterval('P1D'));
+        } catch (\Exception $e) {
+            return 0;
+        }
+
+        return (object) [
+            'start' => $start,
+            'end' => $end,
+        ];
+    }
+
     public static function getLast7Dates()
     {
         $endDate = new \DateTime();

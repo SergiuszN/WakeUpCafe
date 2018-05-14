@@ -63,6 +63,13 @@ class Reservation
      */
     private $author;
 
+    /**
+     * Reservation constructor.
+     */
+    public function __construct()
+    {
+        $this->date = new \DateTime();
+    }
 
     /**
      * Get id

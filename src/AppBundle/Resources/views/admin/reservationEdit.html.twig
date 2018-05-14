@@ -13,6 +13,8 @@
         <h1>Reservation Post <br class="visible-xs"><small>Edit your reservation!</small></h1>
     </div>
 
+    <div id="path">{% set currentPath = path(app.request.attributes.get('_route'),
+            app.request.attributes.get('_route_params')) %}</div>
     {{ form(form) }}
 
 {% endblock %}

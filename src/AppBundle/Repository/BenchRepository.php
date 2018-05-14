@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\Bench;
+use AppBundle\Util\TimeHelper;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\QueryException;
 
@@ -32,5 +34,40 @@ class BenchRepository extends EntityRepository
         } catch (QueryException $e) {
             return 0;
         }
+    }
+
+    /**
+     * @param Bench $bench
+     * @param $date
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function findFreeBenchForDate($bench, $date)
+    {
+        $dates = TimeHelper::getOneDayShift($date);
+
+        /** @var Bench[] $reservedBench */
+        $reservedBenchQuery = $this->createQueryBuilder('b')
+            ->leftJoin('b.reservations', 'r')
+            ->andWhere('r.date >= :start')
+            ->andWhere('r.date < :end')
+            ->setParameter('start', $dates->start)
+            ->setParameter('end', $dates->end);
+
+        if ($bench) {
+            $reservedBenchQuery->andWhere('b != :selectedBench')
+                ->setParameter('selectedBench', $bench);
+        }
+
+        $reservedBench = $reservedBenchQuery
+            ->getQuery()
+            ->execute();
+
+        if (count($reservedBench) == 0) {
+            return $this->createQueryBuilder('b');
+        }
+
+        return $this->createQueryBuilder('b')
+            ->andWhere('b NOT IN (:reserved)')
+            ->setParameter('reserved', $reservedBench);
     }
 }
