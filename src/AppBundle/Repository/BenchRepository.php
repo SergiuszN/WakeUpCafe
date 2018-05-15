@@ -50,6 +50,8 @@ class BenchRepository extends EntityRepository
             ->leftJoin('b.reservations', 'r')
             ->andWhere('r.date >= :start')
             ->andWhere('r.date < :end')
+            ->andWhere('r.state = :state')
+            ->setParameter('state', true)
             ->setParameter('start', $dates->start)
             ->setParameter('end', $dates->end);
 
