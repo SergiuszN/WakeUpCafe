@@ -2,6 +2,42 @@
 
 {% block body %}
     <div class="container">
-        <h1>Blog List page!</h1>
+
+        <div class="page-header">
+            <h1>Blog List <br class="visible-xs"><small>Here are all of our posts</small></h1>
+        </div>
+
+        <p>This is a list of posts.</p>
+
+        <div class="table-responsive" style="margin-top: 15px;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Title</th>
+                    <th>Author</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if pagination.getTotalItemCount == 0 %}
+                    <tr>
+                        <td colspan="6" class="text-center"><h4>Sorry, currently there are no a posts.</h4></td>
+                    </tr>
+                {% endif %}
+                {% for post in pagination %}
+                    <tr>
+                        <td>{{ post.title }}</td>
+                        <td>{{ post.author.username }}</td>
+                        <td>{{ post.date | date('Y-m-d H:i:s') }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+
     </div>
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Post;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class AppController extends Controller
@@ -28,7 +29,14 @@ class AppController extends Controller
      */
     public function blogListAction($page)
     {
-        return $this->render('@App/page/blogList.html.twig', ['page' => $page]);
+        $paginator = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $this->getDoctrine()->getRepository(Post::class)->getUserListQuery(),
+            $page,
+            $this->getParameter('admin_list_per_page')
+        );
+
+        return $this->render('@App/page/blogList.html.twig', array('pagination' => $pagination, 'page' => $page));
     }
 
     /**

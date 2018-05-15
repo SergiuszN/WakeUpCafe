@@ -5,14 +5,27 @@
 
     <div class="container">
         <h1>Index page!</h1>
+
+        <h2>Witaj na WakeUp Cafe!</h2>
+        <p>Tutaj przejrzysz nasze zdjęcia i odnajdziesz nas na mapie.
+            Zapraszamy na naszego bloga gdzie znajdziesz różne ciekawostki ze świata kawy.
+            Chcesz zarezerwować stolik? Sprawdź naszą stronę rezerwacji.</p>
+
+        <h2>Nasze zdjęcia:</h2>
+        <p>Już niedługo się pojawią.</p>
+        <div id="instafeed"></div>
+
         <h2>Nasza lokalizacja:</h2>
         <div id="map" style="width: 640px; height: 330px; display: block; background: #fff; padding: 15px; box-shadow: 0 0 20px #999; border-radius: 2px;"></div>
+
     </div>
 
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
+
+    <script src="{{ asset('js/instafeed.min.js') }}"></script>
 
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBJ4J489wut-A7g21Bvq6oMHPfQ8PfADEQ"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.25/gmaps.js"></script>
@@ -30,6 +43,15 @@
             lng: 14.4924907,
             title: 'Our Location'
         });
+    </script>
+
+    <script type="text/javascript">
+        var feed = new Instafeed({
+            get: 'tagged',
+            tagName: 'awesome',
+            clientId: 'YOUR_CLIENT_ID'
+        });
+        feed.run();
     </script>
 
 {% endblock %}

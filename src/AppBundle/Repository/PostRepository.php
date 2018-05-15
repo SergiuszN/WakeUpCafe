@@ -27,6 +27,18 @@ class PostRepository extends EntityRepository
     }
 
     /**
+     * @return \Doctrine\ORM\Query
+     */
+    public function getUserListQuery()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p, a')
+            ->leftJoin('p.author', 'a')
+            ->addOrderBy('p.date', 'DESC')
+            ->getQuery();
+    }
+
+    /**
      * @return int
      */
     public function findPostedCount()
