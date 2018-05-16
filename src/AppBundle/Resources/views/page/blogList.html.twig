@@ -4,10 +4,8 @@
     <div class="container">
 
         <div class="page-header">
-            <h1>Blog List <br class="visible-xs"><small>Here are all of our posts</small></h1>
+            <h1>Blog List <br class="visible-xs"><small>Sprawdź nasze posty!</small></h1>
         </div>
-
-        <p>This is a list of posts.</p>
 
         <div class="table-responsive" style="margin-top: 15px;">
             <table class="table">
@@ -29,6 +27,9 @@
                         <td>{{ post.title }}</td>
                         <td>{{ post.author.username }}</td>
                         <td>{{ post.date | date('Y-m-d H:i:s') }}</td>
+                        <td>
+                            <a href="{{ path('app_blog_post', {post: post.id}) }}" class="btn btn-xs btn-default"><span class="fa fa-check"></span> View</a>
+                        </td>
                     </tr>
                 {% endfor %}
                 </tbody>

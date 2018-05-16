@@ -13,7 +13,7 @@ app_blog_list:
         page: \d+
 
 app_blog_post:
-    path:     /blog/post/{id}
+    path:     /blog/post/{post}
     defaults: { _controller: AppBundle:App:blogPost }
     requirements:
         id: \d+

@@ -2,7 +2,16 @@
 
 {% block body %}
     <div class="container">
+
         <h1>Blog Post page!</h1>
-        <p>Post id is: {{ id }}</p>
+
+        <h3>{{ post.title }}</h3>
+
+        <p>{{ post.content }}</p>
+
+        <div class="text-right">
+            <a class="btn btn-default" href="{{ path('app_blog_list') }}"> <i class="fa fa-arrow-circle-left " aria-hidden="true"></i> Back</a>
+        </div>
+
     </div>
 {% endblock %}

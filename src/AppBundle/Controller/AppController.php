@@ -40,11 +40,11 @@ class AppController extends Controller
     }
 
     /**
-     * @param int $id
+     * @param Post $post
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function blogPostAction($id)
+    public function blogPostAction(Post $post)
     {
-        return $this->render('@App/page/blogPost.html.twig', ['id' => $id]);
+        return $this->render('@App/page/blogPost.html.twig', ['post' => $post]);
     }
 }
