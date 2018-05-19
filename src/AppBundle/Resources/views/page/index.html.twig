@@ -4,19 +4,24 @@
     {% include '@App/component/slider.html.twig' %}
 
     <div class="container">
-        <h1>Index page!</h1>
 
-        <h3>Witaj na WakeUp Cafe!</h3>
-        <p>Tutaj przejrzysz nasze zdjęcia i odnajdziesz nas na mapie.
-            Zapraszamy na naszego bloga gdzie znajdziesz różne ciekawostki ze świata kawy.
-            Chcesz zarezerwować stolik? Sprawdź naszą stronę rezerwacji.</p>
+        <div id="header" style="margin-bottom: 30px;">
+            <h1 class="text-center">Witaj na Wake Up Cafe!</h1>
+            <p class="lead">Tutaj przejrzysz nasze zdjęcia i odnajdziesz nas na mapie.
+                Zapraszamy na naszego bloga gdzie znajdziesz różne ciekawostki ze świata kawy.
+                Chcesz zarezerwować stolik? Sprawdź naszą stronę rezerwacji.</p>
+        </div>
 
-        <h3>Nasze zdjęcia:</h3>
-        <p>Już niedługo się pojawią.</p>
-        <div id="instafeed"></div>
+        <div id="photos" style="margin-bottom: 30px;">
+            <h3>Nasze zdjęcia:</h3>
+            <p>Już niedługo się pojawią.</p>
+            <div id="instafeed"></div>
+        </div>
 
-        <h3>Nasza lokalizacja:</h3>
-        <div id="map" style="width: 640px; height: 330px; display: block; background: #fff; padding: 15px; box-shadow: 0 0 20px #999; border-radius: 2px;"></div>
+        <div id="location" style="margin-bottom: 30px;">
+            <h3>Nasza lokalizacja:</h3>
+            <div id="map" style="width: 640px; height: 330px; margin-bottom: 50px; display: block; background: #fff; padding: 15px; box-shadow: 0 0 20px #999; border-radius: 2px;"></div>
+        </div>
 
     </div>
 

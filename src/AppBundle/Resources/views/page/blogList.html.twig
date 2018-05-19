@@ -4,18 +4,11 @@
     <div class="container">
 
         <div class="page-header">
-            <h1>Blog List <br class="visible-xs"><small>Sprawdź nasze posty!</small></h1>
+            <h1>Blog Wake Up Cafe <br class="visible-xs"><small>Sprawdź nasze posty!</small></h1>
         </div>
 
         <div class="table-responsive" style="margin-top: 15px;">
             <table class="table">
-                <thead>
-                <tr>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Date</th>
-                </tr>
-                </thead>
                 <tbody>
                 {% if pagination.getTotalItemCount == 0 %}
                     <tr>
@@ -24,12 +17,20 @@
                 {% endif %}
                 {% for post in pagination %}
                     <tr>
-                        <td>{{ post.title }}</td>
-                        <td>{{ post.author.username }}</td>
-                        <td>{{ post.date | date('Y-m-d H:i:s') }}</td>
                         <td>
-                            <a href="{{ path('app_blog_post', {post: post.id}) }}" class="btn btn-xs btn-default"><span class="fa fa-check"></span> View</a>
+                            <div class="container-fluid">
+                                <div class="row">
+                                    <a href="{{ path('app_blog_post', {post: post.id}) }}" class="lead"> {{ post.title }} </a>
+                                </div>
+                                <div class="row">
+                                    Tutaj mógłby znaleźć się skrót posta.
+                                </div>
+                                <div class="row">
+                                    {{ post.date | date('Y-m-d H:i:s') }}
+                                </div>
+                            </div>
                         </td>
+
                     </tr>
                 {% endfor %}
                 </tbody>
