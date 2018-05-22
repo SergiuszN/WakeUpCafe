@@ -7,39 +7,21 @@
             <h1>Blog Wake Up Cafe <br class="visible-xs"><small>Sprawdź nasze posty!</small></h1>
         </div>
 
-        <div class="table-responsive" style="margin-top: 15px;">
-            <table class="table">
-                <tbody>
-                {% if pagination.getTotalItemCount == 0 %}
-                    <tr>
-                        <td colspan="6" class="text-center"><h4>Sorry, currently there are no a posts.</h4></td>
-                    </tr>
-                {% endif %}
-                {% for post in pagination %}
-                    <tr>
-                        <td>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <a href="{{ path('app_blog_post', {post: post.id}) }}" class="lead"> {{ post.title }} </a>
-                                </div>
-                                <div class="row">
-                                    Tutaj mógłby znaleźć się skrót posta.
-                                </div>
-                                <div class="row">
-                                    {{ post.date | date('Y-m-d H:i:s') }}
-                                </div>
-                            </div>
-                        </td>
-
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
-        </div>
+        {% for post in pagination %}
+            <div class="container-fluid">
+                <div class="row">
+                    <a href="{{ path('app_blog_post', {post: post.id}) }}" class="lead"> {{ post.title }} </a>
+                    {{ post.date | date('Y-m-d H:i:s') }}
+                </div>
+                <div class="row">
+                    Tutaj mógłby znaleźć się skrót posta.
+                </div>
+                <hr>
+            </div>
+        {% endfor %}
 
         <div class="navigation">
             {{ knp_pagination_render(pagination) }}
         </div>
-
     </div>
 {% endblock %}
