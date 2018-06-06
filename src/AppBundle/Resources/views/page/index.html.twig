@@ -9,18 +9,41 @@
             <h1 class="text-center">Witaj na Wake Up Cafe!</h1>
             <p class="lead">Tutaj przejrzysz nasze zdjęcia i odnajdziesz nas na mapie.
                 Zapraszamy na naszego bloga gdzie znajdziesz różne ciekawostki ze świata kawy.
-                Chcesz zarezerwować stolik? Sprawdź naszą stronę rezerwacji.</p>
+                Chcesz zarezerwować stolik? Sprawdź naszą stronę rezerwacji!</p>
         </div>
 
-        <div id="photos" style="margin-bottom: 30px;">
-            <h3>Nasze zdjęcia:</h3>
-            <p>Już niedługo się pojawią.</p>
-            <div id="instafeed"></div>
+        <div id="loc-contact-container" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: center; margin-bottom: 30px;">
+            <div id="location" style="margin-left: 50px; margin-right: 50px; margin-bottom: 50px;">
+                <h3>Nasza lokalizacja:</h3>
+                <div id="map" style="width: 640px; height: 330px; display: block; background: #fff; padding: 15px; box-shadow: 0 0 20px #999; border-radius: 2px;"></div>
+            </div>
+            <div id="contact" style="margin-left: 50px; margin-right: 50px; margin-bottom: 10px;">
+                <h3>Kontakt:</h3>
+                <div id="contact-container" style="font-weight: 400; line-height: 1.4;">
+                    <p>
+                        WakeUp Cafe
+                        <br>
+                        Żołnierska 11, 70-489 Szczecin
+                    </p>
+                    <p>
+                        tel. 91 459 82 96
+                        <br>
+                        e-mail: wakeupcafe@gmail.com
+                    </p>
+                    <p>
+                        Zapraszamy codziennie od 17.00 do 23.00!
+                    </p>
+                </div>
+            </div>
         </div>
 
-        <div id="location" style="margin-bottom: 30px;">
-            <h3>Nasza lokalizacja:</h3>
-            <div id="map" style="width: 640px; height: 330px; margin-bottom: 50px; display: block; background: #fff; padding: 15px; box-shadow: 0 0 20px #999; border-radius: 2px;"></div>
+        <div id="img-container" style="display: flex; flex-direction: row; flex-wrap: wrap; justify-content: space-around; margin-bottom: 30px">
+            <img src="{{ asset('img/index-1.jpg') }}" alt="Cafe image 1" style="width: 500px; height: 300px; margin-top: 30px; margin-bottom: 30px;">
+            <img src="{{ asset('img/index-2.jpg') }}" alt="Cafe image 2" style="width: 500px; height: 300px; margin-top: 30px; margin-bottom: 30px;">
+            <img src="{{ asset('img/index-3.jpg') }}" alt="Cafe image 3" style="width: 500px; height: 300px; margin-top: 30px; margin-bottom: 30px;">
+            <img src="{{ asset('img/index-4.jpg') }}" alt="Cafe image 4" style="width: 500px; height: 300px; margin-top: 30px; margin-bottom: 30px;">
+            <img src="{{ asset('img/index-5.jpg') }}" alt="Cafe image 5" style="width: 500px; height: 300px; margin-top: 30px; margin-bottom: 30px;">
+            <img src="{{ asset('img/index-6.jpg') }}" alt="Cafe image 6" style="width: 500px; height: 300px; margin-top: 30px; margin-bottom: 30px;">
         </div>
 
     </div>
