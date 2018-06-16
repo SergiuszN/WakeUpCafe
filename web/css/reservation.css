@@ -1,0 +1,73 @@
+#ReservationController {
+    background-color: #eeeeee;
+    width: 1140px;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+}
+
+.reservation-table {
+    background: url('../img/tables-sprites.png');
+}
+
+.reservation-table.t2 {
+    width: 225px;
+    height: 119px;
+    margin: 10px;
+    display: inline-block;
+}
+
+.reservation-table.t2.empty {
+    background-position: 0 0;
+}
+
+.reservation-table.t2.busy {
+    background-position: -228px 0;
+}
+
+.reservation-table.t2.selected {
+    background-position: -454px 0 !important;
+}
+
+.reservation-table.t4 {
+    width: 238px;
+    height: 220px;
+    margin: 10px;
+    display: inline-block;
+}
+
+.reservation-table.t4.empty {
+    background-position: 0 -131px;
+}
+
+.reservation-table.t4.busy {
+    background-position: -245px -131px;
+}
+
+.reservation-table.t4.selected {
+    background-position: -488px -131px !important;
+}
+
+.reservation-table.t6 {
+    width: 355px;
+    height: 213px;
+    margin: 10px;
+    display: inline-block;
+}
+
+.reservation-table.t6.empty {
+    background-position: 0 -359px;
+}
+
+.reservation-table.t6.busy {
+    background-position: -368px -359px;
+}
+
+.reservation-table.t6.selected {
+    background-position: -728px -359px !important;
+}
+
+.bottom-button-margin {
+    margin: 15px 0;
+}

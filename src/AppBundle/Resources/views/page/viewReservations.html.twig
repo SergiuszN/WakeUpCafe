@@ -1,0 +1,47 @@
+{% extends '@App/layout.html.twig' %}
+
+{% block body %}
+    <div class="container">
+
+        <div class="page-header">
+            <h1>Twoje Rezerwacje</h1>
+        </div>
+
+        <div class="table-responsive" style="margin-top: 15px;">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Date</th>
+                    <th>Table</th>
+                    <th>Name</th>
+                    <th>Status</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if pagination.getTotalItemCount == 0 %}
+                    <tr>
+                        <td colspan="8" class="text-center"><h4>There is no a reservations in your database =(</h4></td>
+                    </tr>
+                {% endif %}
+                {% for reservation in pagination %}
+                    <tr>
+                        <td>{{ reservation.id }}</td>
+                        <td>{{ reservation.date | date('Y-m-d') }}</td>
+                        <td>{{ reservation.bench.name }}</td>
+                        <td>{{ reservation.name }}</td>
+                        <td>
+                            {% if reservation.state %} <span class="fa fa-check"></span> {% else %} <span class="fa fa-times"></span> {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+        <div class="navigation">
+            {{ knp_pagination_render(pagination) }}
+        </div>
+    </div>
+{% endblock %}
+

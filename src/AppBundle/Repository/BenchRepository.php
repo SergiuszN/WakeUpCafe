@@ -39,6 +39,45 @@ class BenchRepository extends EntityRepository
     /**
      * @param Bench $bench
      * @param $date
+     * @return Bench[]
+     */
+    public function getFreeBenchForDate($bench, $date)
+    {
+        return $this->findFreeBenchForDate($bench, $date)
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * @param $date
+     * @return Bench[]
+     */
+    public function getBusyBenchForDate($date)
+    {
+        $dates = TimeHelper::getOneDayShift($date);
+
+        /** @var Bench[] $reservedBench */
+        $reservedBench = $this->createQueryBuilder('b')
+            ->leftJoin('b.reservations', 'r')
+            ->andWhere('r.date >= :start')
+            ->andWhere('r.date < :end')
+            ->andWhere('r.state = :state')
+            ->setParameter('state', true)
+            ->setParameter('start', $dates->start)
+            ->setParameter('end', $dates->end)
+            ->getQuery()
+            ->execute();
+
+        return $this->createQueryBuilder('b')
+            ->andWhere('b IN (:reserved)')
+            ->setParameter('reserved', $reservedBench)
+            ->getQuery()
+            ->execute();
+    }
+
+    /**
+     * @param Bench $bench
+     * @param $date
      * @return \Doctrine\ORM\QueryBuilder
      */
     public function findFreeBenchForDate($bench, $date)

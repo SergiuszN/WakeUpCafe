@@ -136,6 +136,26 @@ class Post
     }
 
     /**
+     * Get content preview
+     *
+     * @return string
+     */
+    public function getContentFull()
+    {
+        return str_replace('<hr />', '', $this->content);
+    }
+
+    /**
+     * Get content preview
+     *
+     * @return string
+     */
+    public function getContentPreview()
+    {
+        return explode('<hr />', $this->content)[0];
+    }
+
+    /**
      * Set status
      *
      * @param boolean $status

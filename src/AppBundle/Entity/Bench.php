@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Exclude;
 
 /**
  * Bench
@@ -12,6 +13,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Bench
 {
+    const STATE_EMPTY = 'empty';
+    const STATE_BUSY = 'busy';
+    const STATE_SELECTED = 'selected';
+
     /**
      * @var int
      *
@@ -45,9 +50,24 @@ class Bench
     /**
      * One Bench has Many Reservations.
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Reservation", mappedBy="bench")
+     * @Exclude
      */
     private $reservations;
 
+    /**
+     * @var string
+     */
+    private $state;
+
+    /**
+     * @var boolean
+     */
+    private $selected;
+
+    public function __construct()
+    {
+        $this->selected = false;
+    }
 
     /**
      * Get id
@@ -142,5 +162,37 @@ class Bench
     public function setReservations($reservations)
     {
         $this->reservations = $reservations;
+    }
+
+    /**
+     * @return string
+     */
+    public function getState()
+    {
+        return $this->state;
+    }
+
+    /**
+     * @param string $state
+     */
+    public function setState($state)
+    {
+        $this->state = $state;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isSelected()
+    {
+        return $this->selected;
+    }
+
+    /**
+     * @param bool $selected
+     */
+    public function setSelected($selected)
+    {
+        $this->selected = $selected;
     }
 }

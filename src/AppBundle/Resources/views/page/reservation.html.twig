@@ -1,7 +1,51 @@
 {% extends '@App/layout.html.twig' %}
 
 {% block body %}
-    <div class="container">
+    <div class="container" ng-app="ReservationApp" ng-controller="ReservationController" ng-cloak>
         <h1>Reservation page!</h1>
+
+        <form>
+            <div class="form-group">
+                <label for="name">Imie:</label>
+                <input type="text" id="name" ng-model="name" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="date">Data:</label>
+                <input type="date" id="date" ng-model="date" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="table">Stolik:</label>
+                <input type="hidden" id="table" ng-model="selectedTable">
+            </div>
+        </form>
+
+        <div class="alert alert-success" ng-show="loading" role="alert"><strong>Loading...</strong></div>
+
+        <div id="ReservationController" ng-hide="loading">
+            <div class="reservation-table" ng-repeat="table in tables"
+                 ng-click="select(table)"
+                 ng-class="getClasses(table)">
+                 </div>
+        </div>
+
+        <div class="alert alert-success" ng-show="creating" role="alert"><strong>Creating...</strong></div>
+
+        {% if app.user %}
+            <div class="btn btn-primary bottom-button-margin" ng-class="{'disabled': !canReserve()}" ng-click="reserve()">Zarezerwować!</div>
+        {% else %}
+            <p class="bottom-button-margin">Żeby móc dokonczyć rezerwacje musisz być <a href="{{ path('fos_user_security_login') }}">zalogowany</a>.</p>
+        {% endif %}
+
+        {% block stylesheets %}
+            {{ parent() }}
+            <link rel="stylesheet" href="{{ asset('css/reservation.css') }}">
+        {% endblock %}
+
+        {% block javascripts %}
+            {{ parent() }}
+            <script src="{{ asset('bundles/fosjsrouting/js/router.min.js') }}"></script>
+            <script src="{{ path('fos_js_routing_js', { callback: 'fos.Router.setData' }) }}"></script>
+            <script src="{{ asset('js/ReservationApp.js') }}"></script>
+        {% endblock %}
     </div>
 {% endblock %}

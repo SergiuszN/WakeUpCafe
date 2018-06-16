@@ -2,6 +2,7 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\User;
 use AppBundle\Util\TimeHelper;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query\QueryException;
@@ -14,6 +15,9 @@ use Doctrine\ORM\Query\QueryException;
  */
 class ReservationRepository extends EntityRepository
 {
+    /**
+     * @return \Doctrine\ORM\Query
+     */
     public function getAdminListQuery()
     {
         return $this->createQueryBuilder('r')
@@ -21,6 +25,20 @@ class ReservationRepository extends EntityRepository
             ->leftJoin('r.author', 'a')
             ->leftJoin('r.bench', 'b')
             ->addOrderBy('r.date', 'DESC')
+            ->getQuery();
+    }
+
+    /**
+     * @param User $user
+     * @return \Doctrine\ORM\Query
+     */
+    public function getUserListQuery(User $user)
+    {
+        return $this->createQueryBuilder('r')
+            ->select('r')
+            ->andWhere('r.author = :author')
+            ->addOrderBy('r.date', 'DESC')
+            ->setParameter('author', $user)
             ->getQuery();
     }
 
